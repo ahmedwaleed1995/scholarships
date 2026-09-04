@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل المنح الدراسية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Zain:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2b2e;
+    --paper:#f3efe6;
+    --card:#ffffff;
+    --pistachio:#5f8a4a;
+    --pistachio-deep:#33512a;
+    --gray:#6b7280;
+    --gray-deep:#4b5563;
+    --line:#dcd4c2;
+    --muted:#6b6459;
+    --closed-soon:#b3462c;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Tajawal',sans-serif;
+    line-height:1.6;
+  }
+  header{
+    background:var(--pistachio-deep);
+    color:#f3efe6;
+    padding:2.2rem 1.5rem 2.6rem;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 2px, transparent 2px 26px);
+    pointer-events:none;
+  }
+  .header-inner{max-width:1100px;margin:0 auto;position:relative;}
+  h1{
+    font-family:'Zain',sans-serif;
+    font-weight:800;
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    margin:0 0 .3rem;
+    letter-spacing:.3px;
+  }
+  .subtitle{color:#d3ddc9;font-size:.98rem;margin:0;}
+  .meta-row{
+    display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;
+    margin-top:1.1rem;font-size:.85rem;color:#c3ceb9;
+  }
+  #refreshBtn{
+    background:var(--gray);
+    color:#fff;
+    border:none;
+    padding:.55rem 1.2rem;
+    border-radius:999px;
+    font-family:'Tajawal',sans-serif;
+    font-weight:700;
+    font-size:.9rem;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:.4rem;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  #refreshBtn:hover{background:var(--gray-deep);transform:translateY(-1px);box-shadow:0 4px 14px rgba(75,85,99,.35);}
+  #refreshBtn:active{transform:translateY(0);}
+  #refreshBtn.spinning svg{animation:spin .8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  #diffBanner{
+    max-width:1100px;margin:1rem auto 0;padding:.75rem 1rem;
+    background:#eef5e9;border:1px solid var(--pistachio);border-radius:10px;
+    font-size:.88rem;display:none;
+  }
+
+  main{max-width:1100px;margin:0 auto;padding:1.6rem 1.5rem 4rem;}
+
+  .controls{
+    display:flex;flex-wrap:wrap;gap:.7rem;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1rem;
+    margin:-2.6rem 0 1.6rem;
+    position:relative;
+    box-shadow:0 8px 24px rgba(51,81,42,.1);
+  }
+  .controls select, .controls input{
+    font-family:'Tajawal',sans-serif;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:.55rem .8rem;
+    font-size:.9rem;
+    background:#fbfaf6;
+    color:var(--ink);
+  }
+  .controls input[type="search"]{flex:1;min-width:180px;}
+  #searchBtn{
+    background:var(--pistachio);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    padding:.55rem 1.3rem;
+    font-family:'Tajawal',sans-serif;
+    font-weight:700;
+    font-size:.9rem;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  #searchBtn:hover{background:var(--pistachio-deep);}
+
+  .count-line{font-size:.85rem;color:var(--muted);margin-bottom:1rem;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.1rem;}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.2rem;
+    display:flex;flex-direction:column;gap:.55rem;
+  }
+  .card h3{margin:0;font-size:1.08rem;font-weight:700;color:var(--pistachio-deep);}
+  .badges{display:flex;flex-wrap:wrap;gap:.4rem;}
+  .badge{
+    font-size:.74rem;font-weight:700;padding:.22rem .6rem;border-radius:999px;
+    background:#eaf3e4;color:var(--pistachio);border:1px solid #cfe0c4;
+  }
+  .badge.funding{background:#fbf1e2;color:#8a5a1e;border-color:#eed6ae;}
+  .desc{font-size:.86rem;color:var(--ink);margin:0;}
+  .desc b{color:var(--muted);font-weight:700;}
+  .deadline{font-size:.84rem;font-weight:700;color:var(--closed-soon);}
+  .card a.apply{
+    margin-top:.4rem;
+    text-align:center;
+    background:var(--pistachio);
+    color:#fff;
+    text-decoration:none;
+    padding:.55rem;
+    border-radius:8px;
+    font-weight:700;
+    font-size:.88rem;
+  }
+  .card a.apply:hover{background:var(--pistachio-deep);}
+  .empty{text-align:center;color:var(--muted);padding:3rem 1rem;}
+  .credit{
+    position:fixed;
+    top:10px;
+    left:10px;
+    z-index:50;
+    font-size:.68rem;
+    line-height:1.5;
+    color:rgba(255,255,255,.55);
+    background:rgba(0,0,0,.15);
+    padding:.35rem .6rem;
+    border-radius:8px;
+    text-align:left;
+    direction:ltr;
+  }
+  .credit a{color:inherit;text-decoration:none;}
+  .credit a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+<div class="credit">
+  Developed by Ahmed Waleed<br>
+  Telegram: <a href="https://t.me/ahmedwaleed95" target="_blank" rel="noopener">ahmedwaleed95</a><br>
+  WhatsApp: ahmedwaleed95
+</div>
+<header>
+  <div class="header-inner">
+    <h1>دليل المنح الدراسية</h1>
+    <p class="subtitle">فهرسة وتصفية المنح حسب المستوى الأكاديمي ونوع التمويل</p>
+    <div class="meta-row">
+      <button id="refreshBtn" onclick="refreshData()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg>
+        تحديث القائمة
+      </button>
+      <span id="lastUpdated">آخر تحديث: —</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div id="diffBanner"></div>
+
+  <div class="controls">
+    <select id="levelFilter">
+      <option value="">كل المستويات</option>
+      <option value="بكالوريوس">بكالوريوس</option>
+      <option value="ماجستير">ماجستير</option>
+      <option value="دكتوراه">دكتوراه</option>
+      <option value="ما بعد دكتوراه">ما بعد دكتوراه</option>
+    </select>
+    <select id="fundingFilter">
+      <option value="">كل أنواع التمويل</option>
+      <option value="ممولة بالكامل">ممولة بالكامل</option>
+      <option value="جزئي">تمويل جزئي</option>
+      <option value="دراسة فقط">دراسة فقط (بدون تمويل)</option>
+    </select>
+    <select id="countryFilter">
+      <option value="">كل الدول</option>
+    </select>
+    <select id="sortBy">
+      <option value="newest">الأحدث إضافة</option>
+      <option value="deadline">الأقرب انتهاءً</option>
+      <option value="title">الاسم (أبجدي)</option>
+    </select>
+    <button id="searchBtn" onclick="render()">ابدأ البحث</button>
+  </div>
+
+  <div class="count-line" id="countLine"></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<script>
+// نسخة احتياطية مضمّنة من قاعدة البيانات — تُستخدم تلقائيًا إذا تعذّر
+// تحميل scholarships.json (مثلاً عند فتح الملف مباشرة بدون سيرفر محلي،
+// أو داخل معاينة لا تسمح بطلبات fetch لملفات محلية). عندما تشغّل الصفحة
+// عبر سيرفر محلي (راجع README)، سيحاول "تحديث القائمة" دائمًا جلب أحدث
+// نسخة من scholarships.json أولاً.
+const EMBEDDED_DATA = {"last_updated":"2026-08-20T00:00:00","added_since_last_run":[],"removed_since_last_run":[],"scholarships":[{"id":"seed-daad-phd-2026","title":"منحة DAAD لدراسة الدكتوراه في ألمانيا","url":"https://www.daad.de/en/","source":"seed","level":"دكتوراه","funding_type":"ممولة بالكامل","country":"ألمانيا","university":"متعدد الجامعات الألمانية","requirements":"شهادة ماجستير، إجادة اللغة الإنجليزية أو الألمانية، خطاب بحثي مقترح","benefits":"راتب شهري حوالي 1400 يورو، تأمين صحي، تغطية تكاليف السفر","open_date":"غير محدد - يُحدَّث سنويًا","deadline":"غير محدد - راجع الموقع الرسمي","scraped_at":"2026-08-20T00:00:00"},{"id":"seed-kaust-masters-phd-2026","title":"منحة KAUST للماجستير والدكتوراه","url":"https://www.kaust.edu.sa/","source":"seed","level":"ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"السعودية","university":"جامعة الملك عبدالله للعلوم والتقنية","requirements":"شهادة بكالوريوس أو ماجستير بتقدير جيد جدًا، اختبار TOEFL/IELTS","benefits":"تمويل يصل إلى 70000 دولار سنويًا، سكن، تأمين صحي","open_date":"غير محدد","deadline":"غير محدد - راجع الموقع الرسمي","scraped_at":"2026-08-20T00:00:00"},{"id":"seed-fulbright","title":"منحة فولبرايت Fulbright","url":"https://foreign.fulbrightonline.org/","source":"seed","level":"ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"الولايات المتحدة","university":"متعدد الجامعات الأمريكية","requirements":"شهادة بكالوريوس، خبرة قيادية، إجادة اللغة الإنجليزية","benefits":"الرسوم الدراسية، الإقامة، تذاكر السفر، تأمين صحي","open_date":"يُفتح غالبًا في فبراير","deadline":"غير محدد - راجع سفارة بلدك","scraped_at":"2026-08-20T00:00:00"},{"id":"user-knight-hennessy-stanford","title":"منحة Knight-Hennessy Scholars في جامعة ستانفورد","url":"https://knight-hennessy.stanford.edu/","source":"أضافها أحمد","level":"ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"الولايات المتحدة","university":"جامعة ستانفورد - أي من كلياتها السبع","requirements":"قبول أو التقديم المتزامن لأي برنامج دراسات عليا في ستانفورد، معايير قيادية وشخصية إضافية (استقلالية الفكر، قيادة هادفة، روح مجتمعية)","benefits":"تمويل كامل للرسوم حتى 3 سنوات، بدل معيشي وأكاديمي، بدل سفر سنوي، برنامج تطوير قيادي","open_date":"مفتوحة حاليًا - التقديم لدفعة 2027","deadline":"راجع صفحة Application Deadlines على الموقع الرسمي","scraped_at":"2026-08-20T00:00:00"},{"id":"user-gates-cambridge","title":"منحة Gates Cambridge في جامعة كامبريدج","url":"https://www.gatescambridge.org/","source":"أضافها أحمد","level":"ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"المملكة المتحدة","university":"جامعة كامبريدج","requirements":"مواطن من أي دولة خارج بريطانيا، التقديم لدرجة دكتوراه أو ماجستير بحثي (MLitt) أو برنامج دراسات عليا لسنة واحدة","benefits":"تغطية كاملة للرسوم، بدل معيشي (حوالي 21000 جنيه إسترليني سنويًا)، تذكرة سفر ذهاب وعودة، تأمين صحي","open_date":"تُفتح سنويًا - عادة في الصيف/الخريف","deadline":"الدورة الحالية مغلقة حاليًا (كانت 15 أكتوبر / 2 ديسمبر / 7 يناير) - تتكرر سنويًا بنفس التوقيت تقريبًا","scraped_at":"2026-08-20T00:00:00"},{"id":"user-warwick-pgr","title":"منح Warwick Doctoral College لطلاب الدكتوراه (PGR)","url":"https://warwick.ac.uk/services/dc/schols_fund/applicants/competitions/","source":"أضافها أحمد","level":"دكتوراه","funding_type":"ممولة بالكامل","country":"المملكة المتحدة","university":"جامعة وارويك","requirements":"التقديم لبرنامج دكتوراه بحثي في وارويك، بعض المسارات لها شروط إضافية (مثل جنسية معينة أو حالة لجوء)","benefits":"تغطية كاملة للرسوم الدراسية، بدل معيشي سنوي، منحة دعم بحثي 5000 جنيه إسترليني","open_date":"الدعوة لدخول 2027 تُفتح في أكتوبر 2026","deadline":"مغلقة حاليًا لدورة 2026 - الدورة القادمة تُفتح أكتوبر 2026","scraped_at":"2026-08-20T00:00:00"},{"id":"user-goi-ies-ireland","title":"منحة حكومة أيرلندا للتعليم الدولي (GOI-IES)","url":"https://hea.ie/policy/internationalisation/goi-ies/","source":"أضافها أحمد","level":"ماجستير/دكتوراه","funding_type":"تمويل جزئي","country":"أيرلندا","university":"أي جامعة أيرلندية مؤهلة (يُحدَّد قبل التقديم للمنحة)","requirements":"قبول مبدئي أو نهائي في برنامج ماجستير أو دكتوراه أيرلندي، الإقامة الأصلية خارج الاتحاد الأوروبي/بريطانيا/سويسرا","benefits":"بدل معيشي 10000 يورو لسنة دراسية واحدة، إعفاء كامل من الرسوم الدراسية لتلك السنة","open_date":"تُفتح سنويًا (دعوة 2026 كانت في يناير)","deadline":"دورة 2026 مغلقة (كان آخر موعد 12 مارس 2026) - راجع الموقع لموعد دورة 2027","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-erasmus-mundus","title":"منح Erasmus Mundus المشتركة للماجستير","url":"https://www.eacea.ec.europa.eu/scholarships/emjmd-catalogue_en","source":"مرجعي - أوروبا","level":"ماجستير","funding_type":"ممولة بالكامل","country":"الاتحاد الأوروبي (متعدد الدول)","university":"برنامج مشترك بين جامعتين أوروبيتين أو أكثر (يختلف حسب التخصص)","requirements":"شهادة بكالوريوس، إجادة الإنجليزية، شروط إضافية تختلف حسب البرنامج المختار من كتالوج EMJMD","benefits":"الرسوم الدراسية، بدل شهري للمعيشة والسفر، تأمين صحي","open_date":"تختلف حسب كل برنامج - راجع كتالوج EMJMD","deadline":"راجع كتالوج البرنامج المحدد على الموقع الرسمي","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-chevening-uk","title":"منحة Chevening البريطانية","url":"https://www.chevening.org/","source":"مرجعي - أوروبا","level":"ماجستير","funding_type":"ممولة بالكامل","country":"المملكة المتحدة","university":"أي جامعة بريطانية مؤهلة","requirements":"خبرة عملية سنتين على الأقل، قبول بثلاث برامج ماجستير بريطانية مختلفة، العودة لبلدك بعد التخرج سنتين على الأقل","benefits":"الرسوم الدراسية، بدل معيشة شهري، تذاكر سفر، بدل تأشيرة","open_date":"تُفتح عادة في أغسطس","deadline":"تُغلق عادة في نوفمبر - راجع الموقع للموعد الدقيق","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-eiffel-france","title":"منحة Eiffel Excellence الفرنسية","url":"https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence","source":"مرجعي - أوروبا","level":"ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"فرنسا","university":"أي جامعة فرنسية مشاركة بالبرنامج","requirements":"عمر أقل من 25 (ماجستير) أو 30 (دكتوراه)، طلب التقديم يقدَّم من الجامعة الفرنسية وليس الطالب مباشرة","benefits":"بدل شهري، تذكرة سفر، تأمين صحي، بعض النشاطات الثقافية","open_date":"غير محدد - راجع الموقع الرسمي","deadline":"غالبًا يناير من كل عام - راجع Campus France","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-swedish-institute","title":"منح المعهد السويدي (Swedish Institute Scholarships)","url":"https://si.se/en/apply/scholarships/","source":"مرجعي - أوروبا","level":"ماجستير","funding_type":"ممولة بالكامل","country":"السويد","university":"أي جامعة سويدية مشاركة","requirements":"من دول محددة مؤهلة (تُنشر سنويًا)، قبول في برنامج ماجستير سويدي","benefits":"الرسوم الدراسية، بدل معيشة شهري، تأمين سفر، شبكة خريجين","open_date":"غير محدد - راجع الموقع الرسمي","deadline":"غالبًا فبراير من كل عام - راجع الموقع","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-holland-scholarship","title":"Holland Scholarship - هولندا","url":"https://www.studyinnl.org/finances/holland-scholarship","source":"مرجعي - أوروبا","level":"بكالوريوس/ماجستير","funding_type":"تمويل جزئي","country":"هولندا","university":"الجامعات الهولندية المشاركة بالبرنامج","requirements":"من خارج المنطقة الاقتصادية الأوروبية (EEA)، قبول في جامعة هولندية مشاركة","benefits":"منحة لمرة واحدة بقيمة 5000 يورو للسنة الأولى","open_date":"غير محدد - راجع الموقع الرسمي","deadline":"تختلف حسب الجامعة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-mext-japan","title":"منحة MEXT الحكومية اليابانية","url":"https://www.studyinjapan.go.jp/en/planning/scholarship/","source":"مرجعي - آسيا","level":"بكالوريوس/ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"اليابان","university":"الجامعات اليابانية المشاركة (تُحدَّد بعد الترشيح)","requirements":"التقديم عبر السفارة اليابانية في بلدك أو ترشيح جامعي مباشر، عمر أقل من 35 عادة","benefits":"الرسوم الدراسية، بدل معيشة شهري، تذاكر سفر، سنة تحضيرية للغة اليابانية","open_date":"تُفتح عادة إبريل-مايو عبر السفارات","deadline":"تختلف حسب السفارة - راجع سفارة اليابان ببلدك","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-csc-china","title":"المنحة الحكومية الصينية (CSC)","url":"https://www.campuschina.org/","source":"مرجعي - آسيا","level":"بكالوريوس/ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"الصين","university":"الجامعات الصينية المشاركة بالبرنامج","requirements":"شهادة سابقة بتقدير جيد، فحص طبي، أحيانًا مستوى معيّن باللغة الصينية أو الإنجليزية","benefits":"الرسوم الدراسية، سكن جامعي، بدل معيشة شهري، تأمين صحي","open_date":"غير محدد - راجع الموقع الرسمي","deadline":"غالبًا إبريل من كل عام","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-kgsp-korea","title":"منحة الحكومة الكورية (KGSP)","url":"https://www.studyinkorea.go.kr/","source":"مرجعي - آسيا","level":"بكالوريوس/ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"كوريا الجنوبية","university":"الجامعات الكورية المشاركة (يختارها الطالب من قائمة محددة)","requirements":"عمر أقل من 25 (بكالوريوس) أو 40 (دراسات عليا)، معدل دراسي مرتفع، التقديم عبر السفارة الكورية أو الجامعة مباشرة","benefits":"الرسوم الدراسية، بدل معيشة شهري، سنة لغة كورية تحضيرية، تذاكر سفر","open_date":"تُفتح عادة فبراير-مارس","deadline":"تختلف حسب السفارة/الجامعة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-turkiye-burslari","title":"منحة Türkiye Bursları التركية","url":"https://www.turkiyeburslari.gov.tr/","source":"مرجعي - آسيا","level":"بكالوريوس/ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"تركيا","university":"يحدَّدها الطالب ضمن الجامعات التركية المشاركة","requirements":"معدل دراسي حسب المرحلة، عمر محدد حسب المرحلة، فحص طبي","benefits":"الرسوم الدراسية، سكن، بدل شهري، تأمين صحي، تذاكر سفر، سنة لغة تركية تحضيرية","open_date":"تُفتح عادة يناير من كل عام","deadline":"غالبًا فبراير من كل عام - راجع الموقع الرسمي","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-taiwan-icdf","title":"منحة Taiwan ICDF","url":"https://www.icdf.org.tw/","source":"مرجعي - آسيا","level":"بكالوريوس/ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"تايوان","university":"الجامعات التايوانية المشاركة بالبرنامج","requirements":"من الدول الشريكة المؤهلة (تُنشر سنويًا)، قبول أكاديمي حسب البرنامج المختار","benefits":"الرسوم الدراسية، بدل معيشة شهري، تأمين صحي، تذاكر سفر","open_date":"غير محدد - راجع الموقع الرسمي","deadline":"تختلف حسب البرنامج والدولة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-rotary-peace","title":"زمالة Rotary للسلام (Rotary Peace Fellowship)","url":"https://www.rotary.org/en/our-programs/peace-fellowships","source":"مرجعي - أمريكا","level":"ماجستير","funding_type":"ممولة بالكامل","country":"الولايات المتحدة وعدة دول أخرى (حسب مركز السلام المختار)","university":"أحد مراكز روتاري للسلام حول العالم","requirements":"خبرة عمل بمجال السلام أو التنمية، إجادة الإنجليزية، ترشيح غير مطلوب لكن يفضَّل","benefits":"الرسوم الدراسية، السكن، تذاكر السفر، مصاريف التدريب الميداني","open_date":"غير محدد - راجع الموقع الرسمي","deadline":"غالبًا مايو من كل عام","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-vanier-canada","title":"منحة Vanier Canada للدكتوراه","url":"https://vanier.gc.ca/","source":"مرجعي - أمريكا","level":"دكتوراه","funding_type":"ممولة بالكامل","country":"كندا","university":"الجامعات الكندية المعتمدة من البرنامج","requirements":"تميز أكاديمي، إمكانات بحثية وقيادية، ترشيح من الجامعة الكندية المضيفة","benefits":"50000 دولار كندي سنويًا لمدة 3 سنوات","open_date":"غير محدد - راجع الموقع الرسمي","deadline":"غالبًا نوفمبر من كل عام (يحدده كل جامعة داخليًا قبل ذلك)","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-iraq-scholarships","title":"بعثات وزارة التعليم العالي والبحث العلمي العراقية","url":"https://mohesr.gov.iq/","source":"مرجعي - الوطن العربي","level":"ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"متعدد (يُحدَّد حسب دورة البعثة المُعلنة)","university":"تحددها الوزارة حسب التخصص والدولة المضيفة لكل دورة","requirements":"شروط تختلف كل دورة (تخصصات مطلوبة، معدل، عمر) - تُعلن رسميًا عبر موقع الوزارة","benefits":"راتب شهري، رسوم دراسية، تذاكر سفر (حسب تفاصيل كل دورة إعلان)","open_date":"تُعلن دوريًا عبر موقع الوزارة - غير ثابتة بالتاريخ","deadline":"راجع آخر إعلان رسمي على mohesr.gov.iq","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-qatar-foundation","title":"منح مؤسسة قطر / جامعة حمد بن خليفة","url":"https://www.hbku.edu.qa/en/admissions/scholarships","source":"مرجعي - الوطن العربي","level":"بكالوريوس/ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"قطر","university":"جامعة حمد بن خليفة (ضمن مؤسسة قطر)","requirements":"قبول أكاديمي بالجامعة أولاً، ثم التقديم للمنحة بنفس دورة القبول","benefits":"الرسوم الدراسية، سكن، بدل شهري، تأمين صحي، تذاكر سفر (تختلف حسب البرنامج)","open_date":"يرتبط بمواعيد القبول الجامعي - راجع الموقع","deadline":"راجع مواعيد القبول لكل فصل دراسي على الموقع الرسمي","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-australia-awards","title":"منح الحكومة الأسترالية Australia Awards","url":"https://www.dfat.gov.au/people-to-people/australia-awards","source":"مرجعي - أستراليا","level":"ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"أستراليا","university":"الجامعات الأسترالية المشاركة (يحددها الطالب ضمن البرنامج)","requirements":"من الدول الشريكة المؤهلة (تُنشر سنويًا)، خبرة عمل وقيادة مجتمعية","benefits":"الرسوم الدراسية، بدل معيشة شهري، تأمين صحي، تذاكر سفر","open_date":"تختلف حسب الدولة الشريكة","deadline":"راجع الموقع الرسمي حسب بلدك (أو australiaawards.com.au)","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-rtp-australia","title":"برنامج تدريب الأبحاث الأسترالي (RTP)","url":"https://www.education.gov.au/research-block-grants/research-training-program","source":"مرجعي - أستراليا","level":"دكتوراه","funding_type":"ممولة بالكامل","country":"أستراليا","university":"يُقدَّم الطلب مباشرة عبر بوابة الدراسات العليا للجامعة المستهدفة","requirements":"قبول في برنامج دكتوراه بحثي أو ماجستير بحثي بجامعة أسترالية مشاركة","benefits":"إعفاء من الرسوم الدراسية، وبعض المسارات فيها بدل معيشة سنوي","open_date":"يعتمد على تقويم القبول لكل جامعة","deadline":"يحدده كل جامعة على حدة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-study-australia-portal","title":"محرك بحث المنح الرسمي - Study Australia","url":"https://search.studyaustralia.gov.au/scholarships","source":"مرجعي - أستراليا (بوابة بحث)","level":"متعدد (بوابة بحث)","funding_type":"متعدد - حسب المنحة المختارة","country":"أستراليا","university":"بوابة بحث تجمع منح عدة جامعات أسترالية","requirements":"يختلف حسب كل منحة تظهر بنتائج البحث","benefits":"بوابة رسمية للبحث والتصفية حسب الجامعة والمستوى والتخصص","open_date":"غير ثابت - بوابة بحث دائمة","deadline":"يختلف حسب كل منحة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-good-universities-guide","title":"دليل الجامعات الأسترالية - قسم المنح","url":"https://www.gooduniversitiesguide.com.au/course-provider/scholarships","source":"مرجعي - أستراليا (بوابة بحث)","level":"متعدد (بوابة بحث)","funding_type":"متعدد - حسب المنحة المختارة","country":"أستراليا","university":"دليل يقارن منح عدة جامعات أسترالية","requirements":"يختلف حسب كل منحة","benefits":"مقارنة ومحرك بحث بين منح الجامعات الأسترالية","open_date":"غير ثابت","deadline":"يختلف حسب كل منحة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-study-uk-portal","title":"بوابة المنح الرسمية Study UK - British Council","url":"https://study-uk.britishcouncil.org/scholarships-funding","source":"مرجعي - بريطانيا (بوابة بحث)","level":"متعدد (بوابة بحث)","funding_type":"متعدد - حسب المنحة المختارة","country":"المملكة المتحدة","university":"بوابة تجمع منح حكومية وجامعية بريطانية متعددة","requirements":"يختلف حسب كل منحة","benefits":"بوابة رسمية تابعة للمجلس الثقافي البريطاني للبحث بين المنح","open_date":"غير ثابت","deadline":"يختلف حسب كل منحة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-great-scholarships","title":"برنامج GREAT Scholarships","url":"https://study-uk.britishcouncil.org/scholarships-funding/great-scholarships","source":"مرجعي - بريطانيا","level":"ماجستير","funding_type":"تمويل جزئي","country":"المملكة المتحدة","university":"الجامعات البريطانية المشاركة بالبرنامج (تُنشر سنويًا)","requirements":"من الدول المؤهلة المحددة سنويًا، قبول في برنامج ماجستير بجامعة مشاركة","benefits":"منحة عادة بقيمة 10000 جنيه إسترليني كخصم من الرسوم الدراسية","open_date":"تختلف حسب كل جامعة مشاركة","deadline":"تختلف حسب كل جامعة مشاركة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-ukri-studentships","title":"منح UKRI البحثية للدراسات العليا","url":"https://www.ukri.org/apply-for-funding/ukri-funded-studentships","source":"مرجعي - بريطانيا","level":"دكتوراه","funding_type":"ممولة بالكامل","country":"المملكة المتحدة","university":"الجامعات البريطانية المرتبطة بمراكز تدريب UKRI البحثية","requirements":"قبول في برنامج دكتوراه ضمن مركز تدريب بحثي ممول من UKRI","benefits":"الرسوم الدراسية، بدل معيشة سنوي (stipend)، ميزانية بحثية وسفر","open_date":"يعتمد على كل مركز تدريب على حدة","deadline":"يحدده كل مركز تدريب/جامعة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-educanada-portal","title":"بوابة EduCanada للبحث عن المنح الكندية","url":"https://www.educanada.ca/scholarships-bourses/search-scholarships-rechercher-bourses.aspx","source":"مرجعي - كندا (بوابة بحث)","level":"متعدد (بوابة بحث)","funding_type":"متعدد - حسب المنحة المختارة","country":"كندا","university":"بوابة حكومية تجمع منح موجهة للطلاب والباحثين الدوليين","requirements":"يختلف حسب كل منحة، قابلة للتصفية حسب الدولة والمستوى","benefits":"بوابة رسمية كندية للبحث والتصفية","open_date":"غير ثابت","deadline":"يختلف حسب كل منحة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-banting-postdoc","title":"منح بانتينغ لأبحاث ما بعد الدكتوراه (Banting)","url":"https://banting.fellowships-bourses.gc.ca/en/home-accueil.html","source":"مرجعي - كندا","level":"ما بعد دكتوراه","funding_type":"ممولة بالكامل","country":"كندا","university":"أي جامعة كندية مضيفة معتمدة","requirements":"حاصل على الدكتوراه خلال آخر 5 سنوات، مشروع بحثي بالتعاون مع مشرف كندي","benefits":"70000 دولار كندي سنويًا لمدة سنتين","open_date":"تُفتح عادة في سبتمبر","deadline":"غالبًا سبتمبر من كل عام - راجع الموقع الرسمي","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-scholarshipscanada","title":"منصة ScholarshipsCanada","url":"https://www.scholarshipscanada.com","source":"مرجعي - كندا (بوابة بحث)","level":"متعدد (بوابة بحث)","funding_type":"متعدد - حسب المنحة المختارة","country":"كندا","university":"قاعدة بيانات خاصة تربط الطلاب بمنح جامعات وكليات كندية متعددة","requirements":"يختلف حسب كل منحة","benefits":"أكبر قاعدة بيانات خاصة للمنح والجوائز الكندية","open_date":"غير ثابت","deadline":"يختلف حسب كل منحة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-univcan","title":"بوابة اتحاد الجامعات الكندية (Universities Canada)","url":"https://univcan.ca/programs-and-scholarships","source":"مرجعي - كندا (بوابة بحث)","level":"متعدد (بوابة بحث)","funding_type":"متعدد - حسب البرنامج","country":"كندا","university":"تدير برامج تمويل وشراكات أكاديمية دولية بين الجامعات الكندية","requirements":"يختلف حسب كل برنامج","benefits":"تجمع برامج تمويل وشراكات أكاديمية متعددة","open_date":"غير ثابت","deadline":"يختلف حسب كل برنامج","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-universitaly","title":"البوابة الوطنية الإيطالية Universitaly","url":"https://www.universitaly.it/en/borse-studio","source":"مرجعي - إيطاليا (بوابة بحث)","level":"متعدد (بوابة بحث)","funding_type":"متعدد - حسب المنحة","country":"إيطاليا","university":"المنصة الرسمية لوزارة الجامعات والبحث الإيطالية (MUR)","requirements":"يختلف حسب كل منحة إقليمية أو منحة تميز","benefits":"استعراض منح إقليمية، منح تميز، والتسجيل المبدئي بالجامعات","open_date":"غير ثابت","deadline":"يختلف حسب كل منحة","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-study-in-italy-maeci","title":"منح الحكومة الإيطالية (MAECI)","url":"https://studyinitaly.esteri.it","source":"مرجعي - إيطاليا","level":"ماجستير/دكتوراه","funding_type":"ممولة بالكامل","country":"إيطاليا","university":"الجامعات الإيطالية المشاركة بالبرنامج","requirements":"يُقدَّم عادة عبر السفارة الإيطالية ببلدك، شروط تختلف سنويًا","benefits":"منحة سنوية، إعفاء من الرسوم الدراسية بالجامعات العامة","open_date":"تُعلن سنويًا عبر وزارة الخارجية الإيطالية","deadline":"راجع الموقع الرسمي أو سفارة إيطاليا ببلدك","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-invest-your-talent-italy","title":"برنامج Invest Your Talent in Italy","url":"https://investyourtalentapplication.esteri.it","source":"مرجعي - إيطاليا","level":"ماجستير","funding_type":"تمويل جزئي","country":"إيطاليا","university":"جامعات إيطالية مشاركة (برامج ماجستير بالإنجليزية)","requirements":"التقديم لبرنامج ماجستير بالإنجليزية بمجال العلوم أو التكنولوجيا أو الهندسة أو الإدارة","benefits":"منحة جزئية + فرصة تدريب مدفوع لدى شركات إيطالية","open_date":"غير ثابت - راجع الموقع الرسمي","deadline":"راجع الموقع الرسمي","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-dsu-italy-regional","title":"منح الأقاليم الإيطالية للحق بالتعليم (DSU)","url":"https://www.dsu.regione.lombardia.it","source":"مرجعي - إيطاليا (إقليمية)","level":"بكالوريوس/ماجستير","funding_type":"تمويل جزئي","country":"إيطاليا","university":"يختلف حسب الإقليم - أبرزها لومبارديا (ميلانو)، لاتسيو (روما)، إميليا رومانيا (بولونيا)، بييمونتي (تورينو)","requirements":"تُمنح بناءً على الوضع المالي للطالب (يُثبت عبر ISEE)، قبول جامعي بالإقليم المعني","benefits":"تغطية الرسوم الجامعية، سكن، ومصروف سنوي (يختلف حسب الإقليم)","open_date":"غير ثابت - راجع بوابة كل إقليم","deadline":"تختلف حسب كل إقليم - راجع: dsu.regione.lombardia.it / discolazio.it / er-go.it / edisu.piemonte.it","scraped_at":"2026-08-20T00:00:00"},{"id":"ref-euraxess-jobs","title":"منصة EURAXESS للوظائف والفرص البحثية","url":"https://euraxess.ec.europa.eu/jobs","source":"مرجعي - أوروبا (بوابة بحث)","level":"دكتوراه/ما بعد دكتوراه","funding_type":"متعدد - حسب الفرصة المعلنة","country":"أوروبا (متعدد الدول)","university":"بوابة أوروبية موحدة تجمع فرص بحثية ووظائف أكاديمية من مؤسسات متعددة","requirements":"يختلف حسب كل فرصة/إعلان معروض على المنصة","benefits":"بوابة رسمية للاتحاد الأوروبي لفرص الباحثين (دكتوراه، ما بعد دكتوراه، وظائف أكاديمية، وتمويل بحثي)","open_date":"غير ثابت - بوابة تُحدَّث باستمرار","deadline":"يختلف حسب كل فرصة معروضة","scraped_at":"2026-08-20T00:00:00"}]};
+
+let DB = EMBEDDED_DATA;
+
+async function loadData(bust) {
+  const url = 'scholarships.json' + (bust ? ('?t=' + Date.now()) : '');
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) throw new Error('bad response');
+  return res.json();
+}
+
+function fmtDate(iso) {
+  if (!iso) return '—';
+  try {
+    const d = new Date(iso);
+    if (isNaN(d)) return iso;
+    return d.toLocaleString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+  } catch { return iso; }
+}
+
+function fundingBadgeClass(f) {
+  return 'badge funding';
+}
+
+function extractDeadlineDate(text) {
+  if (!text) return null;
+  let d = new Date(text);
+  if (!isNaN(d)) return d;
+
+  let m = text.match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
+  if (m) {
+    d = new Date(`${m[3]}-${String(m[2]).padStart(2,'0')}-${String(m[1]).padStart(2,'0')}`);
+    if (!isNaN(d)) return d;
+  }
+
+  m = text.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if (m) {
+    d = new Date(`${m[1]}-${String(m[2]).padStart(2,'0')}-${String(m[3]).padStart(2,'0')}`);
+    if (!isNaN(d)) return d;
+  }
+
+  const arMonths = {'يناير':1,'فبراير':2,'مارس':3,'إبريل':4,'ابريل':4,'أبريل':4,'مايو':5,'يونيو':6,'يوليو':7,'أغسطس':8,'اغسطس':8,'سبتمبر':9,'أكتوبر':10,'اكتوبر':10,'نوفمبر':11,'ديسمبر':12};
+  const re = new RegExp(`(\\d{1,2})\\s*(${Object.keys(arMonths).join('|')})\\s*(\\d{4})`);
+  m = text.match(re);
+  if (m) {
+    d = new Date(parseInt(m[3]), arMonths[m[2]] - 1, parseInt(m[1]));
+    if (!isNaN(d)) return d;
+  }
+  return null;
+}
+
+function removeExpired() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const before = DB.scholarships.length;
+  DB.scholarships = DB.scholarships.filter(s => {
+    const d = extractDeadlineDate(s.deadline);
+    return !(d && d < today);
+  });
+  return before - DB.scholarships.length;
+}
+
+function populateCountryFilter() {
+  const sel = document.getElementById('countryFilter');
+  const countries = [...new Set(DB.scholarships.map(s => s.country).filter(c => c && c !== 'غير محدد'))];
+  countries.sort((a, b) => a.localeCompare(b, 'ar'));
+  const current = sel.value;
+  sel.innerHTML = '<option value="">كل الدول</option>' +
+    countries.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+  if (countries.includes(current)) sel.value = current;
+}
+
+function render() {
+  const level = document.getElementById('levelFilter').value;
+  const funding = document.getElementById('fundingFilter').value;
+  const country = document.getElementById('countryFilter').value;
+  const sortBy = document.getElementById('sortBy').value;
+
+  let list = DB.scholarships.filter(s => {
+    if (level && !(s.level || '').includes(level)) return false;
+    if (funding && !(s.funding_type || '').includes(funding)) return false;
+    if (country && s.country !== country) return false;
+    return true;
+  });
+
+  if (sortBy === 'title') {
+    list.sort((a, b) => (a.title || '').localeCompare(b.title || '', 'ar'));
+  } else if (sortBy === 'deadline') {
+    list.sort((a, b) => {
+      const da = Date.parse(a.deadline), db_ = Date.parse(b.deadline);
+      if (isNaN(da) && isNaN(db_)) return 0;
+      if (isNaN(da)) return 1;
+      if (isNaN(db_)) return -1;
+      return da - db_;
+    });
+  } else {
+    list.sort((a, b) => new Date(b.scraped_at || 0) - new Date(a.scraped_at || 0));
+  }
+
+  document.getElementById('countLine').textContent = `عدد المنح المعروضة: ${list.length} من أصل ${DB.scholarships.length}`;
+
+  const grid = document.getElementById('grid');
+  if (list.length === 0) {
+    grid.innerHTML = '<div class="empty">لا توجد منح مطابقة لهذا الفلتر حاليًا.</div>';
+    return;
+  }
+
+  grid.innerHTML = list.map(s => `
+    <div class="card">
+      <h3>${escapeHtml(s.title)}</h3>
+      <div class="badges">
+        <span class="badge">${escapeHtml(s.level || 'غير محدد')}</span>
+        <span class="${fundingBadgeClass(s.funding_type)}">${escapeHtml(s.funding_type || 'غير محدد')}</span>
+      </div>
+      <p class="desc">${buildDescription(s)}</p>
+      <div class="deadline">آخر موعد للتقديم: ${escapeHtml(s.deadline || 'غير محدد')}</div>
+      <a class="apply" href="${s.url}" target="_blank" rel="noopener">صفحة التقديم ←</a>
+    </div>
+  `).join('');
+}
+
+function buildDescription(s) {
+  const parts = [];
+  if (s.country && s.country !== 'غير محدد') parts.push(`تُقدَّم في ${s.country}`);
+  if (s.university && s.university !== 'غير محدد') parts.push(`لدى ${s.university}`);
+  let text = parts.length ? escapeHtml(parts.join(' ')) + '. ' : '';
+  if (s.requirements && s.requirements !== 'غير محدد') text += `<b>المتطلبات:</b> ${escapeHtml(s.requirements)}. `;
+  if (s.benefits && s.benefits !== 'غير محدد') text += `<b>توفر المنحة:</b> ${escapeHtml(s.benefits)}. `;
+  if (s.open_date && s.open_date !== 'غير محدد') text += `<b>فتح التقديم:</b> ${escapeHtml(s.open_date)}.`;
+  return text || 'لا توجد تفاصيل إضافية متاحة حاليًا — راجع صفحة التقديم.';
+}
+
+function escapeHtml(str) {
+  if (str === undefined || str === null) return '';
+  return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+async function refreshData() {
+  const btn = document.getElementById('refreshBtn');
+  btn.classList.add('spinning');
+  btn.disabled = true;
+  let usedFallback = false;
+  try {
+    DB = await loadData(true);
+  } catch (e) {
+    DB = EMBEDDED_DATA;
+    usedFallback = true;
+  }
+
+  const added = DB.added_since_last_run || [];
+  const removedByScraper = DB.removed_since_last_run || [];
+  const expiredRemoved = removeExpired();
+
+  const now = new Date();
+  const nowStr = now.toLocaleString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  document.getElementById('lastUpdated').textContent = 'آخر تحديث: ' + nowStr +
+    (usedFallback ? ' (نسخة محفوظة داخل الصفحة)' : '');
+
+  const banner = document.getElementById('diffBanner');
+  const msgs = [];
+  if (!usedFallback && added.length) msgs.push(`✅ أُضيفت ${added.length} منحة جديدة`);
+  if (!usedFallback && removedByScraper.length) msgs.push(`❌ أُزيلت ${removedByScraper.length} منحة (مغلقة بحسب آخر تحديث للسكربت)`);
+  if (expiredRemoved) msgs.push(`🗑️ حُذفت ${expiredRemoved} منحة انتهى موعدها النهائي`);
+  if (msgs.length) {
+    banner.style.display = 'block';
+    banner.innerHTML = msgs.join(' — ');
+  } else {
+    banner.style.display = 'none';
+  }
+
+  populateCountryFilter();
+  render();
+  btn.classList.remove('spinning');
+  btn.disabled = false;
+}
+
+refreshData();
+</script>
+</body>
+</html>
