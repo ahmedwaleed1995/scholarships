@@ -1,8 +1,10 @@
 {
-  "last_updated": "2026-09-04T09:31:11.459892+00:00",
+  "last_updated": "2026-09-04T23:01:14.056628+00:00",
   "added_since_last_run": [
-    "Hunter College S&W Scholarship",
-    "College & University Scholarship Program"
+    "USPCE Swine Legacy Scholarship",
+    "Mountaire Farms Family Scholarship",
+    "Stokes Educational Scholarship Program – Language",
+    "Stokes Educational Scholarship Program - STEM"
   ],
   "removed_since_last_run": [],
   "scholarships": [
@@ -2675,6 +2677,66 @@
       "open_date": "غير محدد",
       "deadline": "غير محدد",
       "scraped_at": "2026-09-04T09:31:06.555221+00:00"
+    },
+    {
+      "id": "olarships-scholarships-195038-uspce-swine-legacy-scholarship",
+      "title": "USPCE Swine Legacy Scholarship",
+      "url": "https://www.fastweb.com/college-scholarships/scholarships/195038-uspce-swine-legacy-scholarship",
+      "source": "fastweb.com",
+      "level": "غير محدد",
+      "funding_type": "غير محدد",
+      "country": "غير محدد",
+      "university": "غير محدد",
+      "requirements": "غير محدد",
+      "benefits": "غير محدد",
+      "open_date": "غير محدد",
+      "deadline": "غير محدد",
+      "scraped_at": "2026-09-04T23:00:38.385089+00:00"
+    },
+    {
+      "id": "ships-scholarships-195037-mountaire-farms-family-scholarship",
+      "title": "Mountaire Farms Family Scholarship",
+      "url": "https://www.fastweb.com/college-scholarships/scholarships/195037-mountaire-farms-family-scholarship",
+      "source": "fastweb.com",
+      "level": "غير محدد",
+      "funding_type": "غير محدد",
+      "country": "غير محدد",
+      "university": "غير محدد",
+      "requirements": "غير محدد",
+      "benefits": "غير محدد",
+      "open_date": "غير محدد",
+      "deadline": "غير محدد",
+      "scraped_at": "2026-09-04T23:00:41.627160+00:00"
+    },
+    {
+      "id": "ships-195035-stokes-educational-scholarship-program-language",
+      "title": "Stokes Educational Scholarship Program – Language",
+      "url": "https://www.fastweb.com/college-scholarships/scholarships/195035-stokes-educational-scholarship-program-language",
+      "source": "fastweb.com",
+      "level": "غير محدد",
+      "funding_type": "غير محدد",
+      "country": "غير محدد",
+      "university": "غير محدد",
+      "requirements": "غير محدد",
+      "benefits": "غير محدد",
+      "open_date": "غير محدد",
+      "deadline": "غير محدد",
+      "scraped_at": "2026-09-04T23:00:44.753209+00:00"
+    },
+    {
+      "id": "olarships-195034-stokes-educational-scholarship-program-stem",
+      "title": "Stokes Educational Scholarship Program - STEM",
+      "url": "https://www.fastweb.com/college-scholarships/scholarships/195034-stokes-educational-scholarship-program-stem",
+      "source": "fastweb.com",
+      "level": "غير محدد",
+      "funding_type": "غير محدد",
+      "country": "غير محدد",
+      "university": "غير محدد",
+      "requirements": "غير محدد",
+      "benefits": "غير محدد",
+      "open_date": "غير محدد",
+      "deadline": "غير محدد",
+      "scraped_at": "2026-09-04T23:00:47.809305+00:00"
     }
   ]
 }
